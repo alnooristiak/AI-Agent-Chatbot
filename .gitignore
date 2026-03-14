@@ -1,0 +1,11 @@
+# Ignore the .env file
+.env
+__pycache__/
+
+Pipfile
+Pipfile.lock
+
+# Ignore the files folder
+.venv/
+venv/
+
