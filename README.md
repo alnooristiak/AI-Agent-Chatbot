@@ -12,8 +12,6 @@ A production-ready, full-stack Artificial Intelligence application that utilizes
 
 ### 🔗 Live Demo
 
-### 🔗 Live Demo
-
 - **Frontend (Streamlit):** [https://noor-ai-agent.streamlit.app/](https://noor-ai-agent.streamlit.app/)
 - **Backend API Docs (Swagger UI):** [https://ai-agent-backend-ocot.onrender.com/docs](https://ai-agent-backend-ocot.onrender.com/docs)
 
