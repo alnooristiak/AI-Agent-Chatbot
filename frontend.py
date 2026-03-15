@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 load_dotenv()
-
+import requests
 
 # Setup UI with streamlit
 import streamlit as st
