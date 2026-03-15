@@ -2,6 +2,8 @@
 from pydantic import BaseModel
 from typing import List
 
+from fastapi.middleware.cors import CORSMiddleware
+
 from fastapi import FastAPI
 from ai_agent import get_response_from_ai_agent
 
@@ -17,6 +19,14 @@ ALLOWED_MODEL_NAMES=["llama3-70b-8192", "mixtral-8x7b-32768", "llama-3.3-70b-ver
 
 app=FastAPI(title="LangGraph AI Agent")
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], 
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @app.post("/chat")
 def chat_endpoint(request: RequestState): 
     """
@@ -31,6 +41,7 @@ def chat_endpoint(request: RequestState):
     allow_search = request.allow_search
     system_prompt = request.system_prompt
     provider = request.model_provider
+    query = request.messages[0] if request.messages else ""
 
     # Create AI Agent and get response from it! 
     response=get_response_from_ai_agent(llm_id, query, allow_search, system_prompt, provider)
@@ -39,4 +50,6 @@ def chat_endpoint(request: RequestState):
 # Run app & Explore Swagger UI Docs
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=9999)
+    import os
+    port = int(os.environ.get("PORT", 9999)) 
+    uvicorn.run(app, host="0.0.0.0", port=port) 
