@@ -27,7 +27,8 @@ def get_response_from_ai_agent(llm_id, query, allow_search, system_prompt, provi
     agent = create_react_agent(
         model=llm,
         tools=tools,
-        state_modifier=system_prompt
+        prompt=system_prompt
+        # state_modifier=system_prompt
     )
     
     
